@@ -16,5 +16,7 @@ for word in search_words:
     mean_text = soup.find("div", class_="summaryM descriptionWrp").text
     level = soup.find("span", class_="learning-level-content").text
     #text = text.replace("\n", "")
+    print("--------------------------")
+    print("word: ", word)
     print("mean: ", mean_text)
     print("lebel: ", level)
