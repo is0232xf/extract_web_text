@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 
 # make search words list
 search_words = ["extract", "word", "English", "tablet", "water", "play", "buoyancy"]
+result_list = []
 
 for word in search_words:
     # make url of each search word
@@ -20,10 +21,15 @@ for word in search_words:
     # extract texts from web site
     soup = BeautifulSoup(r.content, "html.parser")
     mean_text = soup.find("div", class_="summaryM descriptionWrp").text
-    level = soup.find("span", class_="learning-level-content").text
+    level = int((soup.find("span", class_="learning-level-content").text))
 
+    result_set = (word, mean_text, level)
+    result_list.append(result_set)
+    """
     # print results
     print("--------------------------")
     print("word: ", word)
     print("mean: ", mean_text)
     print("lebel: ", level)
+    """
+print(result_list)
