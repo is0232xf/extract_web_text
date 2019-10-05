@@ -7,10 +7,13 @@ Created on Sat Oct  5 23:31:43 2019
 import requests
 from bs4 import BeautifulSoup
 
-url = "https://ejje.weblio.jp/content/extract"
+word = "extract"
+url = "https://ejje.weblio.jp/content/" + word
 
 r = requests.get(url)
 soup = BeautifulSoup(r.content, "html.parser")
-text = soup.find("div", class_="summaryM descriptionWrp").text
+mean_text = soup.find("div", class_="summaryM descriptionWrp").text
+level = soup.find("span", class_="learning-level-content").text
 #text = text.replace("\n", "")
-print(text)
+print("mean: ", mean_text)
+print("lebel: ", level)
