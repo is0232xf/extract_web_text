@@ -6,6 +6,7 @@ Created on Sat Oct  5 23:31:43 2019
 """
 import requests
 from bs4 import BeautifulSoup
+from operator import itemgetter
 
 # make search words list
 search_words = ["extract", "word", "English", "tablet", "water", "play", "buoyancy"]
@@ -33,3 +34,6 @@ for word in search_words:
     print("lebel: ", level)
     """
 print(result_list)
+
+sorted_list = sorted(result_list, key=itemgetter(2))
+print(sorted_list)
