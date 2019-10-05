@@ -7,9 +7,9 @@ Created on Sat Oct  5 23:31:43 2019
 import requests
 from bs4 import BeautifulSoup
 
-search_word = ["extract", "word", "English", "tablet", "water", "play", "buoyancy"]
+search_words = ["extract", "word", "English", "tablet", "water", "play", "buoyancy"]
 
-for word in search_word:
+for word in search_words:
     url = "https://ejje.weblio.jp/content/" + word
     r = requests.get(url)
     soup = BeautifulSoup(r.content, "html.parser")
