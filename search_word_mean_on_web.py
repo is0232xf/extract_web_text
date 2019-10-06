@@ -12,7 +12,7 @@ from operator import itemgetter
 search_words = ["wa", "ha", "jfoso", "English", "have", "control"]
 result_list = []
 
-def search_listed_words(search_words):
+def search_on_weblio(search_words):
     for word in search_words:
         # make url of each search word
         url = "https://ejje.weblio.jp/content/" + word
@@ -38,7 +38,7 @@ def search_listed_words(search_words):
         result_list.append(result_set)
     return(result_list)
 
-search_listed_words(search_words)
+search_on_weblio(search_words)
 print(result_list)
 sorted_list = sorted(result_list, key=itemgetter(2))
 print(sorted_list)
