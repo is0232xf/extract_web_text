@@ -36,6 +36,7 @@ def search_listed_words(search_words):
     
         result_set = (word, mean_text, level)
         result_list.append(result_set)
+    return(result_list)
 
 search_listed_words(search_words)
 print(result_list)
