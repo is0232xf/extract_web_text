@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from operator import itemgetter
 
 # make search words list
-search_words = ["extract", "word", "English", "tablet", "water", "play", "buoyancy"]
+search_words = ["wa", "ha", "jfoso", "English", "have", "control"]
 result_list = []
 
 for word in search_words:
@@ -21,8 +21,19 @@ for word in search_words:
 
     # extract texts from web site
     soup = BeautifulSoup(r.content, "html.parser")
-    mean_text = soup.find("div", class_="summaryM descriptionWrp").text
-    level = int((soup.find("span", class_="learning-level-content").text))
+    mean_text = soup.find("div", class_="summaryM descriptionWrp")
+    if mean_text is None:
+        mean_text = "None"
+    else:
+        mean_text = mean_text.text
+    print(mean_text)
+    
+    level = (soup.find("span", class_="learning-level-content"))
+    if level is None:
+        level = 99
+    else:
+        level = int(level.text)
+    print(level)
 
     result_set = (word, mean_text, level)
     result_list.append(result_set)
