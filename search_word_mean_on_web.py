@@ -6,10 +6,7 @@ Created on Sat Oct  5 23:31:43 2019
 """
 import requests
 from bs4 import BeautifulSoup
-from operator import itemgetter
 
-# make search words list
-search_words = ["wa", "ha", "jfoso", "English", "have", "control"]
 result_list = []
 
 def search_on_weblio(search_words):
@@ -41,7 +38,4 @@ def search_on_weblio(search_words):
         result_list.append(result_set)
     return(result_list)
 
-search_on_weblio(search_words)
 print(result_list)
-sorted_list = sorted(result_list, key=itemgetter(2))
-print(sorted_list)
