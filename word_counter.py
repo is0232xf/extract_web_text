@@ -6,7 +6,6 @@ Created on Sat Sep 21 23:33:55 2019
 """
 
 import nltk
-import time
 import os
 from nltk.corpus import wordnet as wn
 from googletrans import Translator
@@ -107,6 +106,7 @@ word_result = []
 for k in range(len(important_words)):
     word_result.append(important_words[k][0])
 
+print(word_result)
 #print(word_result)
 """
 trans = Translator()
@@ -117,7 +117,6 @@ for en_word in word_result:
     ja_word = trans.translate(en_word, dest="ja").text
     word_pair = (en_word, ja_word)
     dictionaliy.append(word_pair)
-"""
 
 output_text_file = open("usage_list.txt", "w", encoding="utf-8")
 star_line = "★★★★★★★★★★★★★★★★★★★★★★★★★"
@@ -144,7 +143,6 @@ for target_word in word_result:
             output_text_file.write(sepa_line)
             output_text_file.write(new_line)
 output_text_file.close()
-"""
 output_text = "deck.tsv"
 #print(word_pair)
 with open(output_text, mode="w", encoding="utf-8") as f:
