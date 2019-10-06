@@ -8,20 +8,20 @@ Created on Sat Sep 21 23:33:55 2019
 import nltk
 import os
 from nltk.corpus import wordnet as wn
+from search_word_mean_on_web import search_on_weblio
 
 nltk.download('all')
 #category_list = ["NN", "NNS", "VB", "VBG", "VBD", "VBN", "VBN", "VBP", "JJ", "RB"]
 category_list = ["NN", "VB"]
-num_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
 path = "./text/"
 count = len(os.listdir(path))
 
-input_file_list = ["./text/text0.txt"]
+input_file_list = []
 
 def make_input_file_list():
     print(count)
-    for i in range(count):
+    for i in range(count-1):
         i = i + 1
         file_name = "./text/text" + str(i) + ".txt"
         input_file_list.append(file_name)
@@ -48,10 +48,9 @@ def exclude_special_characters(data_lines):
     data_lines = data_lines.replace("“", "")
     data_lines = data_lines.replace("/", "")
     data_lines = data_lines.replace("'", "")
-    data_lines = data_lines.replace("\n", "")
     return data_lines
 
-#make_input_file_list()
+make_input_file_list()
 
 whole_data = []
 large_whole_data = []
@@ -107,6 +106,9 @@ for k in range(len(important_words)):
     word_result.append(important_words[k][0])
 
 print(word_result)
+
+weblio_result = search_on_weblio(word_result)
+print(weblio_result)
 #print(word_result)
 """
 trans = Translator()
