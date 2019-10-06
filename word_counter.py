@@ -8,22 +8,22 @@ Created on Sat Sep 21 23:33:55 2019
 import nltk
 import os
 from nltk.corpus import wordnet as wn
-from googletrans import Translator
 
 nltk.download('all')
 #category_list = ["NN", "NNS", "VB", "VBG", "VBD", "VBN", "VBN", "VBP", "JJ", "RB"]
 category_list = ["NN", "VB"]
 num_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
-path = "./replaced_text/"
+path = "./text/"
 count = len(os.listdir(path))
 
-input_file_list = []
+input_file_list = ["./text/text0.txt"]
 
 def make_input_file_list():
-    for i in range(count-1):
+    print(count)
+    for i in range(count):
         i = i + 1
-        file_name = "./replaced_text/replaced_text" + str(i) + ".txt"
+        file_name = "./text/text" + str(i) + ".txt"
         input_file_list.append(file_name)
 
 def split_sentence(sentence):
@@ -48,13 +48,13 @@ def exclude_special_characters(data_lines):
     data_lines = data_lines.replace("“", "")
     data_lines = data_lines.replace("/", "")
     data_lines = data_lines.replace("'", "")
+    data_lines = data_lines.replace("\n", "")
     return data_lines
 
-make_input_file_list()
+#make_input_file_list()
 
 whole_data = []
 large_whole_data = []
-
 for input_text in input_file_list:
     with open(input_text, "r") as myfile:
         data=myfile.read()
