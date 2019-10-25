@@ -9,10 +9,11 @@ import nltk
 import os
 from nltk.corpus import wordnet as wn
 from search_word_mean_on_web import search_on_weblio
+from operator import itemgetter
 
 nltk.download('all')
-#category_list = ["NN", "NNS", "VB", "VBG", "VBD", "VBN", "VBN", "VBP", "JJ", "RB"]
-category_list = ["NN", "VB"]
+category_list = ["NN", "NNS", "VB", "VBG", "VBD", "VBN", "VBN", "VBP", "JJ", "RB"]
+# category_list = ["NN", "VB"]
 
 path = "./text/"
 count = len(os.listdir(path))
@@ -68,8 +69,6 @@ new_data = []
 
 for sentence in whole_data:
     data = split_sentence(sentence)
-    #print(sentence)
-    #print("======================================")
     for num in range(len(data)):
         data[num] = exclude_special_characters(data[num])
         original_word = wn.morphy(data[num])
@@ -82,10 +81,8 @@ for sentence in whole_data:
             pass
 
 fdist1 = nltk.FreqDist(new_data)
-# fdist1.plot(50)
 
 common_list = fdist1.most_common(1000) # 多い単語と数を出力
-# print(common_list)
 words = []
 word_list = []
 
@@ -99,17 +96,19 @@ for j in range(len(tagged_word_list)):
     if tagged_word_list[j][1] in category_list:
         important_words.append(tagged_word_list[j]) # 必要な品詞タグが付いた単語だけを取り出す
 
-# print(important_words[50:100])
 word_result = []
 
 for k in range(len(important_words)):
     word_result.append(important_words[k][0])
 
-print(word_result)
+#print(word_result)
 
 weblio_result = search_on_weblio(word_result)
-print(weblio_result)
-#print(word_result)
+#print(weblio_result)
+
+sortted_list = sorted(weblio_result, key=itemgetter(2))
+print(sortted_list)
+
 """
 trans = Translator()
 
